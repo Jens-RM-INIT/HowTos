@@ -64,8 +64,20 @@ In diesem Dokument sammel ich Dinge, die explizit mit **github** zusammenhängen
    7. Schließe ab mit **Add SSH key**
    8. Gib das GitHub-Passwort ein
       
+## GitHub Verknüpfe lokales Repo mit GitHub Repo
+1. Verknüpfen (benutze am besten die "Kopiervorlage" von GitHub)
+   ~~~ bash
+   // Git Bash
+   $ git remote add <my_name_for_remote_repo> git@github.com:<portfolio>/<repo>.git
+   ~~~
+   Häufig ist der Wert für *my_name_for_remote_repo*, **origin**.
 
-   
+   Zur Kontrolle: `$ git remote -v`
+2. Höchstwahrscheinlich wird dann erstmal ein *fetch* benötigt.
+3. Gib an, wie der zugehörige Branch auf dem Remote Repo heißt. 
+   ~~~ bash
+   $ git push --set-upstream <my_name_for_remote_repo> origin master
+   ~~~
 
 ## Token für Github benutzen
 
