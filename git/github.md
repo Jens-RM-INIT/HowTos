@@ -73,11 +73,33 @@ In diesem Dokument sammel ich Dinge, die explizit mit **github** zusammenhängen
    Häufig ist der Wert für *my_name_for_remote_repo*, **origin**.
 
    Zur Kontrolle: `$ git remote -v`
-2. Höchstwahrscheinlich wird dann erstmal ein *fetch* benötigt.
-3. Gib an, wie der zugehörige Branch auf dem Remote Repo heißt. 
+2. Gib an, wie der zugehörige Branch auf dem Remote Repo heißt und pushe dahin.
+   Dies wird vermutlich nicht funktionieren!
    ~~~ bash
    $ git push --set-upstream <my_name_for_remote_repo> origin master
    ~~~
+3. Korrektur
+   1. Hole den Branch vom remote repo
+      ~~~ bash
+      $ git fetch <my_name_for_remote_repo> <remote_branch>
+      ~~~
+      Typischerweise `git fetch origin master`, im Folgenden nehme ich einfach origin und master.
+   2. Dann muss die Geschichte von `origin/master` mit der des lokalen Branches verknüpft werden
+      ~~~ bash
+      $ git merge origin/master --allow-unrelated-histories
+      ~~~
+   3. Höchstwahrscheinlich gibt es Probleme beim Mergen, die müssen dann manuell behoben werden
+      und anschließend per `git add ...` hinzugefügt werden.
+   4. Um den Merge abzuschließen ist dann ein
+      ~~~ bash
+      $ git commit
+      ~~~
+      nötig.
+   5. Nun lässt sich das Pushen auf den "upstream" wiederholen
+      ~~~ bash
+      $ git push --set-upstream origin master
+      ~~~
+
 
 ## Token für Github benutzen
 
