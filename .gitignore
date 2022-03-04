@@ -1,1 +1,4 @@
 /.idea
+/venv
+**/Todo.md
+**/.env
